@@ -5,6 +5,7 @@ import Layout from '@/components/layout/Layout';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const TowServicePage = () => {
   const [selectedService, setSelectedService] = useState('standard');
@@ -364,8 +365,8 @@ const TowServicePage = () => {
                       required
                     />
                     <label htmlFor="agreement" className="ml-2 text-sm text-text-muted">
-                      Я согласен с <a href="#" className="text-primary hover:underline">условиями оказания услуг</a> и 
-                      <a href="#" className="text-primary hover:underline ml-1">политикой обработки данных</a>
+                      Я согласен с <Link href="/legal/terms-service" className="text-primary hover:underline">условиями оказания услуг</Link> и 
+                      <Link href="/legal/data-processing" className="text-primary hover:underline ml-1">политикой обработки персональных данных</Link>
                     </label>
                   </div>
 

@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Button from '@/components/ui/Button';
+import Link from 'next/link';
 
 const Hero = () => {
   return (
@@ -33,10 +34,10 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button size="lg" className="text-lg px-8 py-4">
-              Открыть дашборд
-            </Button>
-            <Button variant="outline" size="lg" className="text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-foreground">
+            <Link href="/dashboard" className="text-lg px-8 py-4 border-2 border-primary text-white hover:bg-primary hover:text-black rounded-xl">
+              Дашборд
+            </Link>
+            <Button variant="outline" size="lg" className="text-lg px-8 py-4 border-white text-white hover:text-black hover:bg-white">
               Узнать больше
             </Button>
           </div>

@@ -5,6 +5,7 @@ import Layout from '@/components/layout/Layout';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const ProjectDocumentationPage = () => {
   const [activeTab, setActiveTab] = useState('overview');
@@ -387,7 +388,7 @@ const ProjectDocumentationPage = () => {
                         required
                       />
                       <label htmlFor="agreement" className="ml-2 text-sm text-text-muted">
-                        Я согласен с <a href="#" className="text-primary hover:underline">политикой обработки персональных данных</a>
+                        Я согласен с <Link href="/legal/data-processing" className="text-primary hover:underline">политикой обработки персональных данных</Link>
                       </label>
                     </div>
 

@@ -5,7 +5,7 @@
   --foreground: #171717;
   --primary: #62a744;
   --primary-dark: #4a8533;
-  --primary-light: #7bc55a;
+  --primary-light: #5f5f5f;
   --secondary: #f8f9fa;
   --accent: #e9ecef;
   --text-muted: #6c757d;
@@ -28,9 +28,9 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #575757;
+    --foreground: #9b9b9b;
     --secondary: #1a1a1a;
-    --accent: #2a2a2a;
+    --accent: #000000;
   }
 }
 
