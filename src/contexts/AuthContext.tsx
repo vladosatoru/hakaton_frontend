@@ -22,6 +22,7 @@ interface AuthContextType {
   logout: () => void;
   isAdmin: boolean;
   isEditorOrAdmin: boolean;
+  setUser: (user: User) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -33,13 +34,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const login = async (email: string, password: string) => {
     try {
       const response = await apiClient.login(email, password);
-      // Сохраняем токены в куки
-      document.cookie = `accessToken=${response.accessToken}; path=/; max-age=${
-        7 * 24 * 60 * 60
-      }; secure; samesite=strict`;
-      document.cookie = `refreshToken=${
-        response.refreshToken
-      }; path=/; max-age=${30 * 24 * 60 * 60}; secure; samesite=strict`;
       setUser(response.user);
     } catch (error) {
       throw error;
@@ -62,7 +56,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     apiClient.logout();
     setUser(null);
     // Редирект на главную страницу после выхода
-    window.location.href = '/';
+    window.location.href = "/";
   };
 
   const isAdmin = user?.role === "ADMIN";
@@ -71,9 +65,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const checkAuth = async () => {
       // Не проверяем авторизацию на странице логина и регистрации
-      if (typeof window !== "undefined" && 
-          (window.location.pathname.includes("/login") || 
-           window.location.pathname.includes("/register"))) {
+      if (
+        typeof window !== "undefined" &&
+        (window.location.pathname.includes("/login") ||
+          window.location.pathname.includes("/register"))
+      ) {
         setLoading(false);
         return;
       }
@@ -100,6 +96,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     logout,
     isAdmin,
     isEditorOrAdmin,
+    setUser,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

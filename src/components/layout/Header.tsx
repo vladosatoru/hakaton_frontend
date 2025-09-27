@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
+import Image from "next/image";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -63,8 +64,18 @@ const Header = () => {
                     Админ
                   </Link>
                 )}
-                <Link href="/dashboard" className="btn-primary">
-                  Дашборд
+                <Link
+                  href="/profile"
+                  className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
+                >
+                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                    <span className="text-sm font-semibold text-primary">
+                      {(user.name || user.email || "U")[0].toUpperCase()}
+                    </span>
+                  </div>
+                  <span className="text-sm font-medium text-foreground">
+                    {user.name || "Профиль"}
+                  </span>
                 </Link>
                 <button
                   onClick={logout}
@@ -129,22 +140,34 @@ const Header = () => {
               <div className="pt-4 space-y-2">
                 {user ? (
                   <>
+                    <Link
+                      href="/profile"
+                      className="flex items-center space-x-2 px-3 py-2 hover:bg-secondary rounded-lg transition-colors"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                        <span className="text-sm font-semibold text-primary">
+                          {(user.name || user.email || "U")[0].toUpperCase()}
+                        </span>
+                      </div>
+                      <span className="text-sm font-medium text-foreground">
+                        {user.name || "Профиль"}
+                      </span>
+                    </Link>
                     {isAdmin && (
                       <Link
                         href="/admin"
                         className="btn-secondary w-full text-center block"
+                        onClick={() => setIsMenuOpen(false)}
                       >
                         Админ
                       </Link>
                     )}
-                    <Link
-                      href="/dashboard"
-                      className="btn-primary w-full text-center block"
-                    >
-                      Дашборд
-                    </Link>
                     <button
-                      onClick={logout}
+                      onClick={() => {
+                        logout();
+                        setIsMenuOpen(false);
+                      }}
                       className="w-full text-center py-2 text-text-muted hover:text-foreground transition-colors"
                     >
                       Выйти
@@ -154,6 +177,7 @@ const Header = () => {
                   <Link
                     href="/login"
                     className="btn-primary w-full text-center block"
+                    onClick={() => setIsMenuOpen(false)}
                   >
                     Войти
                   </Link>
