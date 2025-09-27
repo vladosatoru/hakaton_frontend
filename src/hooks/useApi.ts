@@ -1,15 +1,17 @@
-import { useState, useEffect } from 'react';
-import { 
-  apiClient, 
-  Project, 
-  Service, 
-  TeamMember, 
-  NewsArticle, 
-  Document, 
-  Job, 
-  TrafficData, 
-  Incident 
-} from '@/lib/api';
+"use client";
+
+import { useState, useEffect } from "react";
+import {
+  apiClient,
+  Project,
+  Service,
+  TeamMember,
+  NewsArticle,
+  Document,
+  Job,
+  TrafficData,
+  Incident,
+} from "@/lib/api";
 
 // Generic hook for API calls
 export function useApi<T>(
@@ -33,7 +35,7 @@ export function useApi<T>(
         }
       } catch (err) {
         if (isMounted) {
-          setError(err instanceof Error ? err.message : 'An error occurred');
+          setError(err instanceof Error ? err.message : "An error occurred");
         }
       } finally {
         if (isMounted) {
@@ -56,7 +58,7 @@ export function useApi<T>(
       const result = await apiCall();
       setData(result);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
+      setError(err instanceof Error ? err.message : "An error occurred");
     } finally {
       setLoading(false);
     }
@@ -146,18 +148,19 @@ export function useSubmitForm() {
       setLoading(true);
       setError(null);
       setSuccess(false);
-      
+
       const result = await apiClient.submitContactForm(data);
-      
+
       if (result.success) {
         setSuccess(true);
       } else {
         setError(result.message);
       }
-      
+
       return result;
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'An error occurred';
+      const errorMessage =
+        err instanceof Error ? err.message : "An error occurred";
       setError(errorMessage);
       throw err;
     } finally {
@@ -176,18 +179,19 @@ export function useSubmitForm() {
       setLoading(true);
       setError(null);
       setSuccess(false);
-      
+
       const result = await apiClient.submitServiceOrder(data);
-      
+
       if (result.success) {
         setSuccess(true);
       } else {
         setError(result.message);
       }
-      
+
       return result;
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'An error occurred';
+      const errorMessage =
+        err instanceof Error ? err.message : "An error occurred";
       setError(errorMessage);
       throw err;
     } finally {
@@ -223,7 +227,8 @@ export function useCrud<T>() {
       const result = await apiCall();
       return result;
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'An error occurred';
+      const errorMessage =
+        err instanceof Error ? err.message : "An error occurred";
       setError(errorMessage);
       throw err;
     } finally {
@@ -238,7 +243,8 @@ export function useCrud<T>() {
       const result = await apiCall();
       return result;
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'An error occurred';
+      const errorMessage =
+        err instanceof Error ? err.message : "An error occurred";
       setError(errorMessage);
       throw err;
     } finally {
@@ -252,7 +258,8 @@ export function useCrud<T>() {
       setError(null);
       await apiCall();
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'An error occurred';
+      const errorMessage =
+        err instanceof Error ? err.message : "An error occurred";
       setError(errorMessage);
       throw err;
     } finally {
