@@ -23,6 +23,7 @@ interface AuthContextType {
   isAdmin: boolean;
   isEditorOrAdmin: boolean;
   setUser: (user: User) => void;
+  updateUser: (user: User) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -62,6 +63,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const isAdmin = user?.role === "ADMIN";
   const isEditorOrAdmin = user?.role === "EDITOR" || user?.role === "ADMIN";
 
+  const updateUser = (updatedUser: User) => {
+    setUser(updatedUser);
+  };
+
   useEffect(() => {
     const checkAuth = async () => {
       // Не проверяем авторизацию на странице логина и регистрации
@@ -97,6 +102,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     isAdmin,
     isEditorOrAdmin,
     setUser,
+    updateUser,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

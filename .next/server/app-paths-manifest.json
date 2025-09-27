@@ -1,8 +1,8 @@
 {
   "/page": "app/page.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/services/page": "app/services/page.js",
-  "/admin/page": "app/admin/page.js",
+  "/profile/page": "app/profile/page.js",
+  "/news/page": "app/news/page.js",
   "/login/page": "app/login/page.js",
-  "/access-denied/page": "app/access-denied/page.js"
+  "/news/[id]/page": "app/news/[id]/page.js",
+  "/dashboard/page": "app/dashboard/page.js"
 }

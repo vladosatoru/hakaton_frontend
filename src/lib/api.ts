@@ -155,6 +155,13 @@ class ApiClient {
     return this.request<User>("/auth/profile");
   }
 
+  async updateProfile(userData: Partial<User>): Promise<User> {
+    return this.request<User>("/users/profile", {
+      method: "PUT",
+      body: JSON.stringify(userData),
+    });
+  }
+
   async logout(): Promise<void> {
     // Очищаем токены из куков
     document.cookie = "accessToken=; path=/; max-age=0";
