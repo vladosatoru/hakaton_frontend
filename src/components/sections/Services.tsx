@@ -2,7 +2,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
-
 const Services = () => {
   const services = [
     {
@@ -10,21 +9,21 @@ const Services = () => {
       description: 'Профессиональная разработка проектной документации для дорожных объектов с учетом современных стандартов и требований безопасности.',
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
       features: ['Проектирование дорог', 'Сметная документация', 'Экспертиза проектов', 'Авторский надзор'],
-      link: '/services/documentation'
+      link: 'services/project-documentation'
     },
     {
       title: 'Аренда автовышки',
       description: 'Предоставление в аренду современных автовышек для обслуживания дорожной инфраструктуры, установки и ремонта оборудования.',
       image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
       features: ['Высота до 22 метров', 'Опытные операторы', 'Гибкий график', 'Конкурентные цены'],
-      link: '/services/crane'
+      link: 'services/crane-rental'
     },
     {
       title: 'Вызов эвакуатора',
       description: 'Круглосуточная служба эвакуации транспортных средств с быстрым реагированием и профессиональным подходом.',
       image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
       features: ['Работа 24/7', 'Быстрое прибытие', 'Любые типы ТС', 'Страхование груза'],
-      link: '/services/evacuation'
+      link: 'services/tow-service'
     }
   ];
 

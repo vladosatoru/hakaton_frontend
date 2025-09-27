@@ -117,3 +117,5 @@ backend/prisma/migrations/*
 
 # Yarn Integrity file
 .yarn-integrity
+
+.next/

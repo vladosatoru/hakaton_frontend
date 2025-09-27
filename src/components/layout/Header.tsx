@@ -10,13 +10,14 @@ const Header = () => {
   const { user, logout, isAdmin } = useAuth();
 
   const navigation = [
-    { name: "О ЦОДД", href: "#about" },
-    { name: "Команда", href: "#team" },
-    { name: "Проекты", href: "#projects" },
-    { name: "Новости", href: "/news" },
-    { name: "Документы", href: "#documents" },
-    { name: "Вакансии", href: "#jobs" },
-    { name: "Контакты", href: "#contacts" },
+    { name: 'О ЦОДД', href: '/#about' },
+    { name: 'Команда', href: '/#team' },
+    { name: 'Проекты', href: '/#projects' },
+    { name: 'Услуги', href: '/services' },
+    { name: 'Новости', href: '/#news' },
+    { name: 'Документы', href: '/#documents' },
+    { name: 'Вакансии', href: '/#jobs' },
+    { name: 'Контакты', href: '/#contacts' },
   ];
 
   return (

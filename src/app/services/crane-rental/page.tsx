@@ -5,6 +5,7 @@ import Layout from '@/components/layout/Layout';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const CraneRentalPage = () => {
   const [selectedCrane, setSelectedCrane] = useState(0);
@@ -356,8 +357,8 @@ const CraneRentalPage = () => {
                       required
                     />
                     <label htmlFor="agreement" className="ml-2 text-sm text-text-muted">
-                      Я согласен с <a href="#" className="text-primary hover:underline">условиями аренды</a> и 
-                      <a href="#" className="text-primary hover:underline ml-1">политикой обработки данных</a>
+                      Я согласен с <Link href="/legal/aerial-lift-rental" className="text-primary hover:underline">условиями аренды</Link> и 
+                      <Link href="/legal/data-processing" className="text-primary hover:underline ml-1">политикой обработки персональных данных</Link>
                     </label>
                   </div>
 
