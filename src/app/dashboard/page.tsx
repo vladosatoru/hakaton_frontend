@@ -5,6 +5,42 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
 import Card from "@/components/ui/Card";
 import { FineStatistics, IncidentStatistics, apiClient } from "@/lib/api";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+} from "recharts";
+
+const COLORS = {
+  primary: "#3B82F6",
+  success: "#10B981",
+  warning: "#F59E0B",
+  danger: "#EF4444",
+  info: "#6366F1",
+  gray: "#6B7280",
+};
+
+const SEVERITY_COLORS = {
+  LOW: "#10B981",
+  MEDIUM: "#F59E0B",
+  HIGH: "#EF4444",
+  CRITICAL: "#7F1D1D",
+};
+
+const STATUS_COLORS = {
+  OPEN: "#EF4444",
+  IN_PROGRESS: "#F59E0B",
+  RESOLVED: "#10B981",
+  CLOSED: "#6B7280",
+};
 
 export default function DashboardPage() {
   const { user, loading } = useAuth();
@@ -78,6 +114,28 @@ export default function DashboardPage() {
     );
   }
 
+  // Подготавливаем данные для графиков
+  const fineData = fineStats
+    ? [
+        {
+          name: "Оплачено",
+          value: fineStats.paidFines,
+          color: COLORS.success,
+        },
+        {
+          name: "Ожидает оплаты",
+          value: fineStats.pendingFines,
+          color: COLORS.warning,
+        },
+      ]
+    : [];
+
+  const incidentTypeData =
+    incidentStats?.byType.map((item) => ({
+      name: getIncidentTypeDisplay(item.type),
+      value: item.count,
+    })) || [];
+
   return (
     <div className="min-h-screen bg-secondary py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -93,9 +151,9 @@ export default function DashboardPage() {
 
         {/* Fine Statistics */}
         {fineStats && (
-          <div className="mb-8">
+          <div className="mb-12">
             <h2 className="text-xl font-semibold mb-4">Статистика штрафов</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
               <Card>
                 <div className="flex items-center">
                   <div className="p-3 rounded-full bg-blue-100 text-blue-600 mr-4">
@@ -197,6 +255,84 @@ export default function DashboardPage() {
                       {fineStats.paidFines.toLocaleString()}
                     </p>
                   </div>
+                </div>
+              </Card>
+            </div>
+
+            {/* Fine Status Chart */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <Card>
+                <h3 className="text-lg font-medium mb-4">
+                  Распределение статусов штрафов
+                </h3>
+                <div className="h-80">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie
+                        data={fineData}
+                        cx="50%"
+                        cy="50%"
+                        labelLine={false}
+                        label={({
+                          cx,
+                          cy,
+                          midAngle,
+                          innerRadius,
+                          outerRadius,
+                          percent,
+                          name,
+                        }) => {
+                          const radius =
+                            innerRadius + (outerRadius - innerRadius) * 0.5;
+                          const x =
+                            cx + radius * Math.cos((-midAngle * Math.PI) / 180);
+                          const y =
+                            cy + radius * Math.sin((-midAngle * Math.PI) / 180);
+                          return (
+                            <text
+                              x={x}
+                              y={y}
+                              fill="white"
+                              textAnchor={x > cx ? "start" : "end"}
+                              dominantBaseline="central"
+                            >
+                              {`${name} ${(percent * 100).toFixed(0)}%`}
+                            </text>
+                          );
+                        }}
+                        outerRadius={120}
+                        dataKey="value"
+                      >
+                        {fineData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.color} />
+                        ))}
+                      </Pie>
+                      <Tooltip />
+                      <Legend />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+              </Card>
+
+              <Card>
+                <h3 className="text-lg font-medium mb-4">
+                  Статистика по типам инцидентов
+                </h3>
+                <div className="h-80">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={incidentTypeData}>
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis
+                        dataKey="name"
+                        angle={-45}
+                        textAnchor="end"
+                        height={80}
+                      />
+                      <YAxis />
+                      <Tooltip />
+                      <Bar dataKey="value" fill={COLORS.primary} />
+                    </BarChart>
+                  </ResponsiveContainer>
                 </div>
               </Card>
             </div>
