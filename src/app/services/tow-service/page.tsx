@@ -89,7 +89,7 @@ const TowServicePage = () => {
   ];
 
   return (
-    <Layout>
+    <>
       <div className="min-h-screen bg-secondary">
         {/* Hero Section */}
         <div className="relative h-96 bg-primary">
@@ -417,7 +417,7 @@ const TowServicePage = () => {
           </div>
         </div>
       </div>
-    </Layout>
+    </>
   );
 };
 

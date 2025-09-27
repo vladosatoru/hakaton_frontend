@@ -54,7 +54,7 @@ const ServicesPage = () => {
   ];
 
   return (
-    <Layout>
+    <>
       <div className="min-h-screen bg-secondary">
         {/* Hero Section */}
         <div className="bg-primary text-white py-16">
@@ -156,7 +156,7 @@ const ServicesPage = () => {
           </div>
         </div>
       </div>
-    </Layout>
+    </>
   );
 };
 

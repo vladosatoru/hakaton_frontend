@@ -72,6 +72,60 @@ type LayoutConfig<Route extends LayoutRoutes = LayoutRoutes> = {
   type __Unused = __Check
 }
 
+// Validate ../../src/app/legal/aerial-lift-rental/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/legal/aerial-lift-rental">> = Specific
+  const handler = {} as typeof import("../../src/app/legal/aerial-lift-rental/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../src/app/legal/data-processing/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/legal/data-processing">> = Specific
+  const handler = {} as typeof import("../../src/app/legal/data-processing/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../src/app/legal/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/legal">> = Specific
+  const handler = {} as typeof import("../../src/app/legal/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../src/app/legal/privacy/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/legal/privacy">> = Specific
+  const handler = {} as typeof import("../../src/app/legal/privacy/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../src/app/legal/terms-service/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/legal/terms-service">> = Specific
+  const handler = {} as typeof import("../../src/app/legal/terms-service/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../src/app/legal/terms/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/legal/terms">> = Specific
+  const handler = {} as typeof import("../../src/app/legal/terms/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../src/app/login/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/login">> = Specific
