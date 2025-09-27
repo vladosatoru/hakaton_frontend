@@ -1,4 +1,4 @@
-// File: C:\Users\vladi\Desktop\hakaton\hakaton_frontend\src\app\layout.tsx
+// File: C:\Users\vladi\Desktop\tw\drochiton\hakaton_frontend\src\app\layout.tsx
 import * as entry from '../../../src/app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

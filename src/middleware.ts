@@ -19,7 +19,7 @@ export async function middleware(request: NextRequest) {
   try {
     // Делаем API запрос для получения данных пользователя
     const apiUrl =
-      process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000/api";
+      process.env.NEXT_PUBLIC_API_URL || "http://176.123.167.173/api";
     const response = await fetch(`${apiUrl}/auth/profile`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
