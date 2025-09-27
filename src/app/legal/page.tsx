@@ -8,36 +8,31 @@ export default function LegalPage() {
       title: "Политика конфиденциальности",
       description: "Как мы собираем, используем и защищаем ваши персональные данные",
       href: "/legal/privacy",
-      lastUpdated: "15.12.2024",
-      icon: "🔒"
+      lastUpdated: "15.12.2024"
     },
     {
       title: "Условия использования",
       description: "Правила использования нашего сайта и сервисов",
       href: "/legal/terms",
-      lastUpdated: "15.12.2024",
-      icon: "📋"
+      lastUpdated: "15.12.2024"
     },
     {
       title: "Условия оказания услуг",
       description: "Порядок оказания услуг в сфере организации дорожного движения",
       href: "/legal/terms-service",
-      lastUpdated: "15.12.2024",
-      icon: "🚦"
+      lastUpdated: "15.12.2024"
     },
     {
       title: "Условия аренды автовышки",
       description: "Правила аренды автогидроподъемников для дорожных работ",
       href: "/legal/aerial-lift-rental",
-      lastUpdated: "15.12.2024",
-      icon: "🏗️"
+      lastUpdated: "15.12.2024"
     },
     {
       title: "Политика обработки персональных данных",
       description: "Принципы и порядок обработки ваших персональных данных",
       href: "/legal/data-processing",
-      lastUpdated: "15.12.2024",
-      icon: "📊"
+      lastUpdated: "15.12.2024"
     }
   ];
 
@@ -82,7 +77,6 @@ export default function LegalPage() {
                 className="card hover:shadow-lg transition-all duration-300 hover:border-primary/50 group h-full flex flex-col"
               >
                 <div className="flex items-start space-x-4 mb-4">
-                  <span className="text-3xl">{doc.icon}</span>
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors mb-2">
                       {doc.title}
