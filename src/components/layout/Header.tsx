@@ -1,19 +1,21 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useState } from 'react';
+import Link from "next/link";
+import { useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, logout, isAdmin } = useAuth();
 
   const navigation = [
-    { name: 'О ЦОДД', href: '#about' },
-    { name: 'Команда', href: '#team' },
-    { name: 'Проекты', href: '#projects' },
-    { name: 'Новости', href: '#news' },
-    { name: 'Документы', href: '#documents' },
-    { name: 'Вакансии', href: '#jobs' },
-    { name: 'Контакты', href: '#contacts' },
+    { name: "О ЦОДД", href: "#about" },
+    { name: "Команда", href: "#team" },
+    { name: "Проекты", href: "#projects" },
+    { name: "Новости", href: "/news" },
+    { name: "Документы", href: "#documents" },
+    { name: "Вакансии", href: "#jobs" },
+    { name: "Контакты", href: "#contacts" },
   ];
 
   return (
@@ -24,8 +26,12 @@ const Header = () => {
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
-                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                <svg
+                  className="w-6 h-6 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
                 </svg>
               </div>
               <div>
@@ -50,9 +56,28 @@ const Header = () => {
 
           {/* CTA Button */}
           <div className="hidden md:flex items-center space-x-4">
-            <Link href="/dashboard" className="btn-primary">
-              Дашборд
-            </Link>
+            {user ? (
+              <>
+                {isAdmin && (
+                  <Link href="/admin" className="btn-secondary">
+                    Админ
+                  </Link>
+                )}
+                <Link href="/dashboard" className="btn-primary">
+                  Дашборд
+                </Link>
+                <button
+                  onClick={logout}
+                  className="text-text-muted hover:text-foreground transition-colors"
+                >
+                  Выйти
+                </button>
+              </>
+            ) : (
+              <Link href="/login" className="btn-primary">
+                Войти
+              </Link>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -61,11 +86,26 @@ const Header = () => {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="text-foreground hover:text-primary p-2"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
                 {isMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
                 )}
               </svg>
             </button>
@@ -86,10 +126,38 @@ const Header = () => {
                   {item.name}
                 </Link>
               ))}
-              <div className="pt-4">
-                <Link href="/dashboard" className="btn-primary w-full text-center block">
-                  Дашборд
-                </Link>
+              <div className="pt-4 space-y-2">
+                {user ? (
+                  <>
+                    {isAdmin && (
+                      <Link
+                        href="/admin"
+                        className="btn-secondary w-full text-center block"
+                      >
+                        Админ
+                      </Link>
+                    )}
+                    <Link
+                      href="/dashboard"
+                      className="btn-primary w-full text-center block"
+                    >
+                      Дашборд
+                    </Link>
+                    <button
+                      onClick={logout}
+                      className="w-full text-center py-2 text-text-muted hover:text-foreground transition-colors"
+                    >
+                      Выйти
+                    </button>
+                  </>
+                ) : (
+                  <Link
+                    href="/login"
+                    className="btn-primary w-full text-center block"
+                  >
+                    Войти
+                  </Link>
+                )}
               </div>
             </div>
           </div>
